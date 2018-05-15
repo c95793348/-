@@ -1,6 +1,7 @@
 package com.imooc.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.imooc.validator.MyContraint;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Past;
@@ -15,7 +16,7 @@ public class User {
     public interface UserDetailView extends UserSimpleView{}
 
     private String id;
-
+    @MyContraint(message = "测试自定义注解提示!")
     private String username;
     @NotBlank(message = "密码不能为空!")
     private String password;

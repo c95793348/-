@@ -3,6 +3,7 @@ package com.imooc.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.imooc.dto.User;
 import com.imooc.dto.UserQueryCondition;
+import com.imooc.exception.UserNotExistException;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -88,12 +89,21 @@ public class UserController {
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable(name = "id") String idxxxx){
         logger.info("getInfo方法参数id : " + idxxxx);
+
+//        throw new UserNotExistException(idxxxx);
+//        throw new RuntimeException("异常!!!");
         User user = new User();
         user.setUsername("coco");
         user.setPassword("110110");
         return user;
     }
 
+    @DeleteMapping("/{id:\\d+}")
+    public void delete(@PathVariable(name = "id") String idxxxxx){
+        logger.info("delete方法参数id : " + idxxxxx);
 
+        throw new UserNotExistException(idxxxxx);
+
+    }
 
 }

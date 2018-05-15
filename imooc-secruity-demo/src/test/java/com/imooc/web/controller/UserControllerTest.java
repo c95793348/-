@@ -16,9 +16,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
@@ -106,6 +104,13 @@ public class UserControllerTest {
                 .andReturn().getResponse().getContentAsString();
 
         System.out.println(result);
+    }
+
+    @Test
+    public void whenDeleteSuccess() throws Exception {
+        mockMvc.perform(delete("/user/1")
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
     }
 
 
